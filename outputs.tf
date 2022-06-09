@@ -3,6 +3,11 @@ output "consul_client_sg_id" {
   value       = module.vm_servers.consul_clients_sg_id
 }
 
+output "consul_server_sg_id" {
+  description = "AWS security group ID for Consul servers"
+  value       = module.vm_servers.consul_servers_sg_id
+}
+
 output "consul_subnet_ids" {
   description = "AWS subnets ID to deploy Consul clients"
   value       = module.networking.consul_subnet_ids
