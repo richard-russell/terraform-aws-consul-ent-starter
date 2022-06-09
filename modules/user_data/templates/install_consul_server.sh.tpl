@@ -81,7 +81,7 @@ ports {
 }
 
 ui_config {
-  enabled = false 
+  enabled = true 
 }
 
 EOF
