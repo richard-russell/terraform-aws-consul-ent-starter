@@ -4,6 +4,8 @@ imds_token=$( curl -Ss -H "X-aws-ec2-metadata-token-ttl-seconds: 30" -XPUT 169.2
 instance_id=$( curl -Ss -H "X-aws-ec2-metadata-token: $imds_token" 169.254.169.254/latest/meta-data/instance-id )
 local_ipv4=$( curl -Ss -H "X-aws-ec2-metadata-token: $imds_token" 169.254.169.254/latest/meta-data/local-ipv4 )
 
+hostname client-$(hostname)
+
 # install package
 
 curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
@@ -64,6 +66,7 @@ connect {
 
 ports {
   https = 8501
+  grpc  = 8502
 }
 
 ui_config {
