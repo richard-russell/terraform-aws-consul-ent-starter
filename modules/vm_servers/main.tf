@@ -241,6 +241,27 @@ resource "aws_security_group_rule" "consul_client_serf_lan_udp" {
   self              = true
 }
 
+resource "aws_security_group_rule" "consul_server_serf_lan_tcp_inbound" {
+  description       = "Allow Consul clients to use Serf over TCP"
+  security_group_id = aws_security_group.consul_clients.id
+  type              = "ingress"
+  from_port         = 8301
+  to_port           = 8301
+  protocol          = "tcp"
+  source_security_group_id        = aws_security_group.consul_servers.id
+}
+
+resource "aws_security_group_rule" "consul_server_serf_lan_udp_inbound" {
+  description       = "Allow Consul clients to use Serf over UDP"
+  security_group_id = aws_security_group.consul_clients.id
+  type              = "ingress"
+  from_port         = 8301
+  to_port           = 8301
+  protocol          = "udp"
+  source_security_group_id        = aws_security_group.consul_servers.id
+}
+
+
 resource "aws_security_group_rule" "consul_client_http_api" {
   description       = "Allow Consul clients to reach other over HTTP API"
   security_group_id = aws_security_group.consul_clients.id
