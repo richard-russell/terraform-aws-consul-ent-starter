@@ -105,4 +105,5 @@ echo "Setup Consul profile"
 cat <<PROFILE | sudo tee /etc/profile.d/consul.sh
 export CONSUL_HTTP_ADDR="https://127.0.0.1:8501"
 export CONSUL_CACERT="/opt/consul/tls/consul-ca.pem"
+export CONSUL_GRPC_ADDR="https://127.0.0.1:8502"
 PROFILE

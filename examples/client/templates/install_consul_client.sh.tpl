@@ -85,5 +85,6 @@ systemctl start consul
 
 echo "Setup Consul profile"
 cat <<PROFILE | sudo tee /etc/profile.d/consul.sh
-export CONSUL_HTTP_ADDR="http://127.0.0.1:8500"
+export CONSUL_HTTP_ADDR="https://127.0.0.1:8501"
+export CONSUL_GRPC_ADDR="https://127.0.0.1:8502"
 PROFILE
