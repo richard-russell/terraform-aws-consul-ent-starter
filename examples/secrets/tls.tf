@@ -12,7 +12,7 @@ resource "tls_self_signed_cert" "ca" {
     common_name = var.ca_common_name
   }
 
-  validity_period_hours = 720 # 30 days
+  validity_period_hours = 43800 # 5 years
 
   allowed_uses = [
     "cert_signing",
@@ -39,6 +39,7 @@ resource "tls_cert_request" "server" {
 
   dns_names = [
     var.shared_san,
+    "*.${var.shared_san}",
     "localhost",
   ]
 
@@ -52,7 +53,7 @@ resource "tls_locally_signed_cert" "server" {
   ca_private_key_pem = tls_private_key.ca.private_key_pem
   ca_cert_pem        = tls_self_signed_cert.ca.cert_pem
 
-  validity_period_hours = 720 # 30 days
+  validity_period_hours = 8760 # 1 year
 
   allowed_uses = [
     "client_auth",

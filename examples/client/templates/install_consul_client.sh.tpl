@@ -42,6 +42,9 @@ verify_incoming        = false
 verify_incoming_rpc    = true
 verify_outgoing        = true
 verify_server_hostname = true
+datacenter             = "dc1"
+primary_datacenter     = "dc1"
+bind_addr              = "0.0.0.0"
 
 retry_join = [
   "provider=aws region=${region} tag_key=${name}-consul tag_value=cluster",
@@ -62,6 +65,7 @@ auto_encrypt {
 
 connect {
   enabled = true
+  enable_mesh_gateway_wan_federation = true
 }
 
 ports {
